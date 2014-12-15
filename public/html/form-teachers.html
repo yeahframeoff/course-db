@@ -20,12 +20,16 @@
 
 <!-- GENDER -->
 <div class="form-group">
-<input type="text" class="form-control input-sm" name="gender" ng-model="$parent.entryData.gender" placeholder="Gender">
+<select class="form-control input-sm" name="gender" ng-model="$parent.entryData.gender"
+       ng-options="i for i in ['М', 'Ж']">
+</select>
 </div>
 
 <!-- POSITION -->
 <div class="form-group">
-<input type="text" class="form-control input-sm" name="position_id" ng-model="$parent.entryData.position_id" placeholder="Position">
+<select class="form-control input-sm" name="position_id" ng-model="$parent.entryData.position_id"
+        ng-init="dropdown.positions()" ng-options="i.id as i.value for i in dropdown.items['positions']">
+</select>
 </div>
 
 <!-- DEPARTMENT -->

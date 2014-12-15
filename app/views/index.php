@@ -14,20 +14,17 @@
     </div>
     
     <div class="row">
-        {{ table }}
-        {{ htmlRoot + formUrl }}
         <select class="form-control" ng-model="table"
                 ng-change="theForm.$dirty && promptSave(); changeTable(table)">
             <option></option>
             <option>teachers</option>
             <option>curriculums</option>
+            <option>curriculum_types</option>
             <option>teachers_curriculums</option>
             <option>subjects</option>
             <option>positions</option>
         </select>
     </div>
-    
-    {{ theForm.$dirty == true }}
     
     <form ng-submit="submitEntry()" name="theForm">
         <div ng-if="table">
@@ -40,11 +37,11 @@
        
     <table class="table table-striped" ng-if="entries.length">
         <thead>
-            <th ng-repeat="key in notSorted(entries[0])">{{key}}</th><th></th>
+            <th ng-repeat="key in dataKeys">{{key}}</th><th></th>
         </thead>
         <tbody>
             <tr ng-repeat="entry in entries">
-                <td ng-repeat="key in notSorted(entry)">{{entry[key]}}</td>
+                <td ng-repeat="key in dataKeys">{{entry[key]}}</td>
                 <td><a href="#" ng-click="deleteEntry(entry.id)" class="text-muted">Delete</a></td>
             </tr>
         </tbody>

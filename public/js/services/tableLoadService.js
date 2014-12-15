@@ -13,7 +13,7 @@ angular.module('tableLoadService', [])
                     method: 'POST',
                     url: '/api/' + this.table + '/' + (entryData.id || ''),
                     headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-                    data: $.param(teacherData)
+                    data: $.param(entryData)
                 });
             },
 
@@ -21,5 +21,5 @@ angular.module('tableLoadService', [])
             destroy : function(id) {
                 return $http.delete('/api/' + this.table + '/' + id);
             }
-        }
+        };
     });

@@ -1,0 +1,18 @@
+<!-- TEACHER -->
+<div class="form-group">
+<select class="form-control input-sm" name="teacher_id" ng-model="$parent.entryData.teacher_id"
+        ng-init="dropdown.teachers()" ng-options="i.value as i.id for i in dropdown.items['teachers']">
+</select>
+</div>
+
+<!-- CURRICULUMS -->
+<div class="form-group">
+<select class="form-control input-sm" name="curriculum_id" ng-model="$parent.entryData.curriculum_id"
+        ng-init="dropdown.curriculums()" ng-options="i.value as i.id for i in dropdown.items['curriculums']">
+</select>
+</div>
+
+<!-- HOURS -->
+<div class="form-group">
+<input type="text" class="form-control input-sm" name="department" ng-model="$parent.entryData.hours" placeholder="Hours">
+</div>

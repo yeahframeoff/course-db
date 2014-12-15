@@ -2,7 +2,8 @@
 var module = angular.module('mainCtrl', []);
 
 // inject the Comment service into our controller
-module.controller('mainController', ['$scope', '$http', 'TableLoad', function($scope, $http, TableLoad) {
+module.controller('mainController', ['$scope', '$http', 'TableLoad', 'Dropdown',
+                                     function($scope, $http, TableLoad, Dropdown) {
     
     $scope.htmlRoot = "/public/html/";
     $scope.formUrl = null;
@@ -11,19 +12,22 @@ module.controller('mainController', ['$scope', '$http', 'TableLoad', function($s
     $scope.dataKeys = [];
     $scope.table = null;
     
-    $scope.loading = true;
-
     $scope.$watch('theForm', function(form) {
         $scope.form = $scope.form || form;
     });
+
+    $scope.dropdown = Dropdown;
     
     $scope.submitEntry = function() {
-        $scope.loading = true;
-
+        console.log('Submit the entry mazafaka');
         TableLoad.save($scope.entryData)
-            .success(function() {
-                $scope.loading = false;
-                $scope.entries.push($scope.entryData);
+            .success(function(data) {
+                if (data.success) {
+                    $scope.entryData.id = data.id;
+                    $scope.entries.push($scope.entryData);
+                    $scope.entryData = {};
+                }
+                
             })
             .error(function(data) {
                 console.log(data);
@@ -47,7 +51,7 @@ module.controller('mainController', ['$scope', '$http', 'TableLoad', function($s
                 $scope.dataKeys = data.keys;
             })
             .error(function() {
-                console.log("Smth not cool happens all the time");
+                console.log("Smth not cool happened bro");
                 $scope.loading = false;
             });
     };
@@ -64,16 +68,15 @@ module.controller('mainController', ['$scope', '$http', 'TableLoad', function($s
     .bind(this, $scope);
     
     $scope.promptSave = function() {
-        debugger;
         return true;
     };
     
     $scope.notSorted = function(obj) {
-        if (!obj) {
+        if (!obj)
             return [];
-        }
-        var keys = Object.keys(obj);
-        var i = keys.indexOf('$$hashKey');
+        console.log(obj);
+        var keys = Object.keys(obj),
+            i = keys.indexOf('$$hashKey');
         delete keys[i];
         return keys;
     }

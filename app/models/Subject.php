@@ -3,6 +3,8 @@
 class Subject extends Eloquent
 {
     protected $fillable = ['title'];
+    
+    public $timestamps = false;
 
     public function curriculums()
     {

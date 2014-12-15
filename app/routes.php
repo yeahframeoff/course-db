@@ -19,19 +19,16 @@ Route::get('/', function()
 
 
 Route::group(['prefix' => 'api'], function() {
-    $theOnly = ['only' => ['index', 'show', 'store', 'update', 'destroy']];
+    $theOnly = ['only' => ['index', 'store', 'update', 'destroy']];
     Route::resource('teachers', 'TeacherController', $theOnly);
     Route::resource('positions', 'PositionController', $theOnly);
     Route::resource('subjects', 'SubjectController', $theOnly);
     Route::resource('curriculums', 'CurriculumController', $theOnly);
+    Route::resource('curriculum_types', 'CurriculumTypeController', $theOnly);
+    Route::controller('custom', 'CustomController');
 });
 
-// =============================================
-// CATCH ALL ROUTE =============================
-// =============================================
-// all routes that are not home or api will be redirected to the frontend
-// this allows angular to route them
-App::missing(function($exception)
+App::missing(function($e)
 {
     return View::make('index');
 });
