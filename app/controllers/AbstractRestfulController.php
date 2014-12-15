@@ -16,7 +16,10 @@ abstract class AbstractRestfulController extends \BaseController {
      */
     public function index()
     {
-        $response = Response::json(call_user_func([static::$class, 'get']));
+        $response = Response::json([
+            'keys' => call_user_func([static::$class, 'keys']), 
+            'data' => call_user_func([static::$class, 'get'])
+        ]);
         return $response;
     }
 

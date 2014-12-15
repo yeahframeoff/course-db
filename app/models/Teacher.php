@@ -18,4 +18,17 @@ class Teacher extends Eloquent
     {
         return $this->belongsToMany('Curriculum');
     }
+    
+    public static function keys() {
+        return [
+            'id',
+            'name',
+            'name2',
+            'surname',
+            'date_of_birth',
+            'gender',
+            'department',
+            'position_id'
+        ];
+    }
 }

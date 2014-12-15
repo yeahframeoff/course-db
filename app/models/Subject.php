@@ -13,4 +13,11 @@ class Subject extends Eloquent
     {
         return $this->belongsToMany('Teacher');
     }
+    
+    public static function keys() {
+        return [
+            'id',
+            'title',
+        ];
+    }
 } 

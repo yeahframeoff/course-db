@@ -8,4 +8,13 @@ class Curriculum extends Eloquent
     {
         return $this->belongsTo('Subject');
     }
+    
+    public static function keys() {
+        return [
+            'id',
+            'subject_id',
+            'type',
+            'hours',
+        ];
+    }
 } 
